@@ -20,19 +20,18 @@ linear-gradient(180deg,#fff8df 0%,#eff9e7 58%,#fff7e8 100%);
 .app{max-width:430px;margin:0 auto;padding:10px}
 .phone{min-height:calc(100vh - 20px);border:3px solid #161616;border-radius:34px;background:var(--paper);
 box-shadow:0 18px 38px rgba(79,94,55,.22);overflow:hidden;position:relative}
-.phone:before{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:72px;height:18px;background:#111;border-radius:0 0 14px 14px;z-index:8}
-.status{height:38px;padding:10px 16px 0;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:.78rem;color:#111;position:relative;z-index:3}
-.screen{min-height:calc(100vh - 62px);padding:8px 16px 16px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.screen{min-height:calc(100vh - 20px);padding:8px 16px 16px;display:flex;flex-direction:column;position:relative;overflow:hidden}
 .screen:before{content:"";position:absolute;inset:0;pointer-events:none;background:
 radial-gradient(ellipse at -8% 8%,rgba(112,162,82,.16) 0 16%,transparent 17%),
 radial-gradient(ellipse at 108% 16%,rgba(112,162,82,.14) 0 16%,transparent 17%),
 radial-gradient(ellipse at 10% 96%,rgba(230,184,112,.14) 0 14%,transparent 15%)}
-.screen:after{content:"🌿";position:absolute;right:13px;top:32px;font-size:1.35rem;opacity:.72;transform:rotate(-15deg)}
+.screen:after{content:"";position:absolute;right:18px;top:26px;width:28px;height:14px;background:#7da95b;border-radius:80% 0 80% 0;opacity:.55;transform:rotate(-25deg);box-shadow:-18px 14px 0 rgba(125,169,91,.42)}
 .content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column}
 .hidden{display:none!important}.center{text-align:center}
 .footer{position:relative;z-index:2;text-align:center;color:#807867;font-size:.72rem;line-height:1.45;border-top:1px dashed #dfcfad;padding-top:8px;margin-top:10px}
 h1{font-size:2.05rem;line-height:1.1;margin:4px 0 5px;color:var(--green);letter-spacing:.04em;text-shadow:0 3px #fff;font-weight:1000;text-align:center}
 h2{font-size:1.25rem;margin:8px 0 10px;text-align:center;color:var(--green);font-weight:1000}
+.drawnLeaves{display:flex;justify-content:space-between;margin:0 8px 2px}.drawnLeaves span{width:30px;height:14px;background:#7da95b;border-radius:80% 0 80% 0;opacity:.65;transform:rotate(-25deg)}.drawnLeaves span:last-child{transform:rotate(135deg)}
 .wood{display:inline-block;margin:2px auto 8px;padding:7px 15px;border-radius:999px;color:#fff;font-weight:900;background:linear-gradient(180deg,#aa7a3e,#80552e);box-shadow:inset 0 2px rgba(255,255,255,.25)}
 .hero{height:515px;border:1.5px solid #d7e4bb;border-radius:25px;overflow:hidden;background:#f4f7df;margin:8px 0 12px;box-shadow:0 10px 20px rgba(70,98,55,.11);position:relative}
 .hero img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
@@ -58,15 +57,15 @@ h2{font-size:1.25rem;margin:8px 0 10px;text-align:center;color:var(--green);font
 @media(max-width:390px){.app{padding:6px}.screen{padding:7px 13px 14px}h1{font-size:1.85rem}.hero{height:470px}.mascot{height:155px}.questionText{font-size:1.02rem}}
 </style></head>
 <body>
-<div class="app"><div class="phone"><div class="status"><span>9:41</span><span>●●● 🔋</span></div>
+<div class="app"><div class="phone">
 
 <section id="home" class="screen"><div class="content center">
-  <div style="display:flex;justify-content:space-between;font-size:1.2rem;margin:0 4px"><span>🌿</span><span>🍃</span></div>
+  <div class="drawnLeaves"><span></span><span></span></div>
   <h1>中醫嘉年華<br>體質探索站</h1>
   <div class="wood">30秒了解你的中醫體質</div>
   <div class="hero"><img src="assets/cover-forest-mobile.png" alt="九隻動物森林體質夥伴"></div>
   <p class="intro">透過簡單問卷，找出您的體質類型<br>獲得專屬養生建議！</p>
-  <button class="btn" onclick="go('gender')">開始體質檢測 🍀</button>
+  <button class="btn" onclick="go('gender')">開始體質檢測</button>
   <button class="btn secondary" onclick="alert('本問卷僅供健康促進與衛教參考，非醫療診斷。')">關於中醫體質</button>
 </div><div class="footer">三義慈濟中醫醫院<br>健康臺灣深耕計畫</div></section>
 
@@ -116,7 +115,7 @@ h2{font-size:1.25rem;margin:8px 0 10px;text-align:center;color:var(--green);font
   <h2>專屬養生建議</h2>
   <div id="adviceMascot" class="mascot adviceMascot"></div>
   <div id="finalAdvice"></div>
-  <div class="nav"><button class="btn" onclick="restart()">重新檢測</button><button class="btn secondary" onclick="window.print()">儲存</button></div>
+  <div class="nav"><button class="btn" onclick="restart()">重新檢測</button><button class="btn secondary" onclick="window.print()">儲存結果</button></div>
   <p class="disclaimer">本問卷僅供健康促進與衛教參考，非醫療診斷。如有疑問，建議諮詢專業中醫師。</p>
 </div><div class="footer">三義慈濟中醫醫院<br>健康臺灣深耕計畫</div></section>
 
@@ -181,18 +180,20 @@ function finishStage2One(){
  let judge=(key==="pingHe"?(score>=60?"是":"否"):(score>40?"是":(score>=30?"傾向是":"否")));
  stage2Results.push({...meta[key],key,score,judge,raw,n:qs.length});
  if(stage2Queue.length){answers=[];current=0;renderQ();return}
- let valid=stage2Results.filter(r=>r.key==="pingHe"?r.score>=60:r.score>=30);
+ let valid=stage2Results.filter(r=>r.key==="pingHe"?r.score>=60:r.score>=30).sort((a,b)=>b.score-a.score);
  if(valid.length===0){stage2Queue=["pingHe"];answers=[];current=0;mode="stage2";renderQ();return}
- showFinal(valid.sort((a,b)=>b.score-a.score)[0],stage2Results)
+ showFinal(valid,stage2Results)
 }
-function showFinal(best,all){
+function showFinal(validResults,all){
+ const best=validResults[0];
+ const names=validResults.map(r=>r.name).join("、");
  document.getElementById("finalMascot").innerHTML=`<img src="${imageOf(best.key,'3')}" alt="${best.animal}">`;
- document.getElementById("adviceMascot").innerHTML=`<img src="${imageOf(best.key,'4')}" alt="${best.animal}">`;
- document.getElementById("finalTitle").innerHTML=`您的主要體質為<br>${best.name}<br><span style="font-size:1rem;color:#8a5a2c">${best.animal}夥伴</span>`;
- document.getElementById("finalScore").innerText=`${best.score}分`;
- document.getElementById("finalJudge").innerText=`判定結果：${best.judge}`;
- document.getElementById("finalDetails").innerHTML=`<ul class="smallList">`+best.traits.map(t=>`<li>${t}</li>`).join("")+`</ul><table class="table"><tr><th>體質</th><th>分數</th><th>判定</th></tr>`+all.map(r=>`<tr><td><img class="mini" src="${imageOf(r.key,'1')}">${r.name}</td><td>${r.score}分</td><td>${r.judge}</td></tr>`).join("")+`</table><div class="disclaimer">計算公式：[(總分－題數)/(題數×4)]×100；平和體質需 ≥60 分才成立。</div>`;
- document.getElementById("finalAdvice").innerHTML=best.advice.map((a,i)=>`<div class="advice"><div class="iconBox">${["🥗","🍵","🌿"][i]}</div><div>${a}</div></div>`).join("");
+ document.getElementById("adviceMascot").innerHTML=validResults.map(r=>`<img src="${imageOf(r.key,'4')}" alt="${r.animal}" style="max-width:${validResults.length>1?'45%':'100%'};margin:3px">`).join("");
+ document.getElementById("finalTitle").innerHTML=`您的體質結果<br>${names}<br><span style="font-size:1rem;color:#8a5a2c">${validResults.map(r=>r.animal+"夥伴").join("、")}</span>`;
+ document.getElementById("finalScore").innerText=validResults.length===1?`${best.score}分`:`共 ${validResults.length} 種`;
+ document.getElementById("finalJudge").innerText=validResults.length===1?`判定結果：${best.judge}`:`以下顯示所有成立／傾向成立的體質`;
+ document.getElementById("finalDetails").innerHTML=`<table class="table"><tr><th>體質</th><th>分數</th><th>判定</th></tr>`+all.map(r=>`<tr><td><img class="mini" src="${imageOf(r.key,'1')}">${r.name}</td><td>${r.score}分</td><td>${r.judge}</td></tr>`).join("")+`</table><div class="disclaimer">計算公式：[(總分－題數)/(題數×4)]×100；平和體質需 ≥60 分才成立。</div>`;
+ document.getElementById("finalAdvice").innerHTML=validResults.map(r=>`<div class="resultCard" style="margin:10px 0;background:#fffdf8"><div class="mascot adviceMascot"><img src="${imageOf(r.key,'4')}" alt="${r.animal}"></div><div class="resultTitle" style="font-size:1.18rem">${r.name}｜${r.animal}夥伴</div><ul class="smallList">`+r.traits.map(t=>`<li>${t}</li>`).join("")+`</ul>`+r.advice.map((a,i)=>`<div class="advice"><div class="iconBox">${["食","茶","養"][i]}</div><div>${a}</div></div>`).join("")+`</div>`).join("");
  go("final")
 }
 function restart(){gender=null;stage2Queue=[];stage2Results=[];answers=[];current=0;document.querySelectorAll(".genderChoice").forEach(c=>c.classList.remove("selected"));document.getElementById("genderNext").disabled=true;go("home")}

@@ -16,3 +16,9 @@ GitHub Pages：
 1. 上傳 index.html、README.md、assets 資料夾。
 2. Settings → Pages → Deploy from a branch。
 3. Branch 選 main，Folder 選 /root，Save。
+
+
+## V7.3.1 微調
+- 移除手機假狀態列（時間、電量）。
+- 若第二階段出現多種成立／傾向成立體質，結果頁會顯示多種體質與各自衛教。
+- 移除頁面中的葉子 emoji，改為 CSS 繪製葉片。
